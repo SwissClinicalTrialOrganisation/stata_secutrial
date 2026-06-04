@@ -1,0 +1,14 @@
+v 1.0.0
+d 'STATA_SECUTRIAL': stata_secutrial
+d 
+d secuTrial data preparation
+d 
+d Distribution-Date:   20260604
+d License: Academic Free License v3.0
+d 
+F secutrial_prep.ado
+F secutrial_prep.sthlp
+F xlabel.ado
+F xlabel.hlp
+F xvarlabel.ado
+F xvarlabel.hlp

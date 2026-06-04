@@ -1,0 +1,82 @@
+{smcl}
+{* *! version 1.0.0  04June2026}{...}
+{hline}
+{cmd:help secutrial_prep}
+{hline}
+
+{title:Title}
+
+{phang}
+{bf:secutrial_prep} {hline 2} Imports secuTrial data into Stata and labels it.
+
+
+{marker syntax}{...}
+{title:Syntax}
+
+{p 4 6 2}
+{cmdab:secutrial_prep} {cmd:,} {opth zip(string)} {opth path(string)} [{it:options}]
+
+{synoptset 38 tabbed}{...}
+{synopthdr}
+{synoptline}
+{syntab:Required}
+{synopt:{opth zip(string)}} path and name of the zip file with the data {p_end}
+{synopt:{opth path(string)}} path to the folder where the data should be stored {p_end}
+
+{syntab:Optional}
+{synopt:{opt addi:d}} adds additional ID (mnpaid) to all forms {p_end}
+{synopt:{opt addc:entre}} adds centre name to all forms {p_end}
+{synopt:{opt rem:ovesys}} removes most (unnecessary) system variables{p_end}
+{synopt:{opt fullf:ormnames}} keep the full form names{p_end}
+
+{marker description}{...}
+{title:Description}
+
+{pstd}	
+The data has to be dowloaded from secuTrial via the export tool which produces a zip file.
+The full path to the zip-file and the file name have to be specified using {opt zip()}.
+
+{pstd}
+The imported and labelled files will be stored under {opt path()} in two automatically generated folders:
+{it:raw_data} contains the unlabelled raw dta files, {it:labelled_data} the labelled files with shortened file names.
+Both inlcude a subfolder {it:meta_data} with the meta data. {p_end}
+	
+{pstd}	
+Options {opt addi:d} and {opt addc:entre} include the additional ID (mnpaid) and the centre name in each from
+	(if files {it:casenodes} and {it:centres} are available).
+
+{pstd}
+Option {opt rem:ovesys}  removes a set of usually unnecessary system variables from each file
+	(visitstartdate, mnplabid, mnpcnptnid, mnplastedit, mnpptnid, mnplang,
+	mnpvispdt, mnpcvpid, mnpvisfdt, mnpfs0, mnpfs1, mnpfs2, mnpfs3,
+	mnpfcs0, mnpfcs1, mnpfcs2, mnpfcs3, mnpfsqa,
+	mnpfsct, mnpfssdv, mnphide, sigstatus, sigreason,
+	mnpvsno, mnpvslbl, mnpaeid, mnpaedate, mnpaeno,
+	mnpaefuid, mnpaefudt, mnpsubdocid, fgid, position).
+	
+{pstd}
+Option {opt fullf:ormnames} keeps the full file names in the {it:labelled_data} folder, inclusing the {it:mnppXXXX}-prefix. 
+	
+
+{marker results}{...}
+{title:Stored results}
+
+{phang} {cmd:secutrial_prep} stores the exported files in two folders under {opt path()}:{p_end}
+{phang2}- {it: raw_data} contains raw dta files and the meta data in subfolder {it:meta_data}{p_end}
+{phang2}- {it: labelled_data} contains labelled dta files and the meta data in subfolder{it: meta_data}{p_end}
+
+{synoptset 22 tabbed}{...}
+{p2col 5 22 19 2: Scalars}{p_end}
+{synopt:{cmd:r(export_date)}}date of export{p_end}
+{synopt:{cmd:r(export_datetime)}}datetime of export{p_end}
+
+{marker examples}{...}
+{title:Examples}
+
+{phang}{cmd: .secutrial_prep, zip("path_to_project/p_export_CSV-xls_PXXXX_YYYYMMDD-hhmmss") path("path_to_project\prepared_data") addid addcentre removesys} {p_end}
+	
+
+
+
+
+
