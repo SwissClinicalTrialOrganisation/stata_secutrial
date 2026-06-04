@@ -26,7 +26,7 @@ Example
 ------------
 
 	# Default settings
-	stata_secutrial, zip(path_to_project/original_data/p_export_CSV-xls_PXXXX_YYYYMMDD-hhmmss) path("path_to_project\prepared_data") addid addcentre removesys
+	stata_secutrial, zip(path_to_project/original_data/p_export_CSV-xls_PXXXX_YYYYMMDD-hhmmss) path("path_to_project\prepared_data")
 
 	# Add alternative ID and centre name, and remove (unnecessary) system variables
 	stata_secutrial, zip(path_to_project/original_data/p_export_CSV-xls_PXXXX_YYYYMMDD-hhmmss) path("path_to_project\prepared_data") addid addcentre removesys
@@ -35,10 +35,7 @@ Example
 Authors
 ------
 
-**Lukas Bütikofer** & **Alan Haynes**
-
+**Lukas Bütikofer** & **Alan Haynes**	
 DCR Bern  
-
 lukas.buetikofer@unibe.ch  
-
 <https://github.com/dcr-unibe-ch/stata_secutrial>  
