@@ -35,7 +35,7 @@ Example
 Authors
 ------
 
-**Lukas Bütikofer** & **Alan Haynes**	
+**Lukas Bütikofer & Alan Haynes**  
 DCR Bern  
 lukas.buetikofer@unibe.ch  
 <https://github.com/dcr-unibe-ch/stata_secutrial>  
