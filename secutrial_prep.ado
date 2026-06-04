@@ -62,11 +62,7 @@ if "`fullformnames'"!="" {
 qui secutrial_label, pathraw("`path'/raw_data") pathlab("`path'/labelled_data") /// 
 `ai' `ac' `rs' `fn'
 
-cap frame drop system_labels_lookup
-
-
 *export date 
-
 dis
 dis "Prepared export from:"
 dis %tc `edtime'
@@ -102,7 +98,7 @@ end
 ****************************
 *enter system variables
 ****************************
- 
+
 capture frame drop system_labels_lookup
 frame create system_labels_lookup str32 var str100 text
 
@@ -234,6 +230,7 @@ save "`pathraw'/meta_data/forms_items", replace
 clear
 frame copy system_labels_lookup default, replace
 save "`pathraw'/meta_data/sysvars", replace
+frame drop system_labels_lookup
 
 end 
 
