@@ -70,7 +70,6 @@ dis %tc `edtime'
 return local export_datetime `edtime'
 return local export_date `edate'
 	 
-
 end
 	
 
@@ -94,76 +93,7 @@ program define secu_varclear
 	}
 end
 
-
-****************************
-*enter system variables
-****************************
-
-capture frame drop system_labels_lookup
-frame create system_labels_lookup str32 var str100 text
-
-frame system_labels_lookup {
-	//clear
-	//input str32 var str100 text , 
-	input
-	"mnpvisid"					"System: Visit identifier" 
-	"visitnumber"				"System: Visit sequence"
-	"visittype"					"System: Visit type (fixed/flexible/unscheduled/free)"
-	"visitstartdate"			"System: Patient entry into project"
-	"mnppid"					"System: System Patient ID"
-	"mnpaid"					"System: Additional Patient ID"
-	"mnplabid"					"System: Additional Patient ID 2"
-	"mnp_regimen_gr"			"System: Randomisation"
-	"mnpcnptnid"				"System: Center Patient ID"
-	"mnpctrid"					"System: Center ID"
-	"mnpctrname"				"System: Center name"
-	"mnpdocid"					"System: eCRF ID"
-	"mnplastedit"				"System: Date of last edit"
-	"mnpptnid"					"System: Form last saved by"
-	"mnplang"					"System: Language"
-	"mnpcvpid"					"System: Participant visit ID"
-	"mnpvisno"					"System: Individual number of visit for the given casenode."
-	"mnpvispdt"					"System: Planned visit date"
-	"mnpvisfdt"					"System: Date of first data entry"
-	"mnpfs0"					"System: Review level 1"
-	"mnpfs1"					"System: Review level 2"
-	"mnpfs2"					"System: Record manually frozen"
-	"mnpfs3"					"System: Record frozen by system"
-	"mnpfcs0"					"System: Completion status"
-	"mnpfcs1"					"System: Errors in record"
-	"mnpfcs2"					"System: Warnings in record"
-	"mnpfcs3"					"System: Data entry complete"
-	"mnpfsqa"					"System: Open query"
-	"mnpfsct"					"System: Comment on form status"
-	"mnpfssdv"					"System: Source data verification status"
-	"mnphide"					"System: Hidden form"
-	"sigstatus"					"System: Signature status"
-	"sigreason"					"System: Reason for modified data"
-	"mnpvsno"					"System: Project version number at time eCRF stored"
-	"mnpvslbl"					"System: Project version label at time eCRF stored"
-	"mnpaeid"					"System: Unique AE ID"
-	"mnpaedate"					"System: AE date"
-	"mnpaeno"					"System: AE number for the given casenode"
-	"mnpaefuid"					"System: The ID of a follow-up to the Adverse Event"
-	"mnpaefudt"					"System: Adverse Event follow up date"
-	"mnpsubdocid"				"System: Subdocument ID"
-	"fgid"						"System: Repetition id"
-	"position" 					"System: Position in repetition of parent document"
-	"mnpcs0"					"System: Patient record valid"
-	"mnpcs1"					"System: Patient record set as anonymized"
-	"mnpcs2"					"System: Patient record frozen"
-	"mnpcs3"					"System: Patient record automatically frozen"
-	"mnpcs4"					"System: Patient deceased"
-	"mnpcs5"					"System: Patient frozen"
-	"mnpcs6"					"System: Patient to be deleted"
-	"mnpcs7"					"System: Patient has closed visit plan"
-	"mnpvisstartdate" 			"System: Patient entry into project"
-	"mnp_rando_done_gr" 		"System: Rando group"
-	"mnp_rando_done_assigndate" "System: Rando datetime"
-	end 
-}
-
-
+	
 ********************
 * Import data 
 **********************
@@ -225,12 +155,71 @@ mmerge fgid using "`pathraw'/meta_data/items", type(1:n)
 keep if _merge==3
 save "`pathraw'/meta_data/forms_items", replace
 
-*system variable 
+*system variable labels 
+tempfile lookup
+cap postclose lup 
+postfile lup str32 var str100 text using "`lookup'"
 
-clear
-frame copy system_labels_lookup default, replace
+post lup ("mnpvisid")					("System: Visit identifier") 
+post lup ("visitnumber")				("System: Visit sequence")
+post lup ("visittype")					("System: Visit type (fixed/flexible/unscheduled/free)")
+post lup ("visitstartdate")				("System: Patient entry into project")
+post lup ("mnppid")						("System: System Patient ID")
+post lup ("mnpaid")						("System: Additional Patient ID")
+post lup ("mnplabid")					("System: Additional Patient ID 2")
+post lup ("mnp_regimen_gr")				("System: Randomisation")
+post lup ("mnpcnptnid")					("System: Center Patient ID")
+post lup ("mnpctrid")					("System: Center ID")
+post lup ("mnpctrname")					("System: Center name")
+post lup ("mnpdocid")					("System: eCRF ID")
+post lup ("mnplastedit")				("System: Date of last edit")
+post lup ("mnpptnid")					("System: Form last saved by")
+post lup ("mnplang")					("System: Language")
+post lup ("mnpcvpid")					("System: Participant visit ID")
+post lup ("mnpvisno")					("System: Individual number of visit for the given casenode")
+post lup ("mnpvispdt")					("System: Planned visit date")
+post lup ("mnpvisfdt")					("System: Date of first data entry")
+post lup ("mnpfs0")						("System: Review level 1")
+post lup ("mnpfs1")						("System: Review level 2")
+post lup ("mnpfs2")						("System: Record manually frozen")
+post lup ("mnpfs3")						("System: Record frozen by system")
+post lup ("mnpfcs0")					("System: Completion status")
+post lup ("mnpfcs1")					("System: Errors in record")
+post lup ("mnpfcs2")					("System: Warnings in record")
+post lup ("mnpfcs3")					("System: Data entry complete")
+post lup ("mnpfsqa")					("System: Open query")
+post lup ("mnpfsct")					("System: Comment on form status")
+post lup ("mnpfssdv")					("System: Source data verification status")
+post lup ("mnphide")					("System: Hidden form")
+post lup ("sigstatus")					("System: Signature status")
+post lup ("sigreason")					("System: Reason for modified data")
+post lup ("mnpvsno")					("System: Project version number at time eCRF stored")
+post lup ("mnpvslbl")					("System: Project version label at time eCRF stored")
+post lup ("mnpaeid")					("System: Unique AE ID")
+post lup ("mnpaedate")					("System: AE date")
+post lup ("mnpaeno")					("System: AE number for the given casenode")
+post lup ("mnpaefuid")					("System: The ID of a follow-up to the Adverse Event")
+post lup ("mnpaefudt")					("System: Adverse Event follow up date")
+post lup ("mnpsubdocid")				("System: Subdocument ID")
+post lup ("fgid")						("System: Repetition id")
+post lup ("position") 					("System: Position in repetition of parent document")
+post lup ("mnpcs0")						("System: Patient record valid")
+post lup ("mnpcs1")						("System: Patient record set as anonymized")
+post lup ("mnpcs2")						("System: Patient record frozen")
+post lup ("mnpcs3")						("System: Patient record automatically frozen")
+post lup ("mnpcs4")						("System: Patient deceased")
+post lup ("mnpcs5")						("System: Patient frozen")
+post lup ("mnpcs6")						("System: Patient to be deleted")
+post lup ("mnpcs7")						("System: Patient has closed visit plan")
+post lup ("mnpvisstartdate") 			("System: Patient entry into project")
+post lup ("mnp_rando_done_gr") 			("System: Rando group")
+post lup ("mnp_rando_done_assigndate")  ("System: Rando datetime")
+postclose lup
+
+use "`lookup'",clear
+
+//frame copy system_labels_lookup default, replace
 save "`pathraw'/meta_data/sysvars", replace
-frame drop system_labels_lookup
 
 end 
 
