@@ -146,11 +146,13 @@ foreach form of local fname {
 }
 
 *forms and items
+//items: ffid fgid sequence ffcolname itemtype
+//forms:  formid formtablename hidden formname formfamily
 
 use "`pathraw'/meta_data/questions", clear
 keep fgid formid formtablename formname fglabel
 mmerge formid formname using "`pathraw'/meta_data/forms", type(n:1)
-duplicates report fgid
+drop if missing(fgid)
 mmerge fgid using "`pathraw'/meta_data/items", type(1:n)
 keep if _merge==3
 save "`pathraw'/meta_data/forms_items", replace
