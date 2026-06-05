@@ -32,9 +32,9 @@ The main function `secutrial_prep` needs the specification of
 	the path to the folder containing at least one secuTrial zip-file using the **zip()** option.
 
 In the second case, the zip-file with the most recent export is chosen 
-	(based on the file date time included in the file name).
+	(based on the date and time included in the file name).
 
-The data is then imported and prepared in the folder given with **path**.
+The data is then imported and prepared in the folder indicated in **path**.
 
 Example
 ------------
