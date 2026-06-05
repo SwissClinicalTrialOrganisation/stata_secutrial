@@ -146,11 +146,13 @@ foreach form of local fname {
 }
 
 *forms and items
+//items: ffid fgid sequence ffcolname itemtype
+//forms:  formid formtablename hidden formname formfamily
 
 use "`pathraw'/meta_data/questions", clear
 keep fgid formid formtablename formname fglabel
 mmerge formid formname using "`pathraw'/meta_data/forms", type(n:1)
-duplicates report fgid
+drop if missing(fgid)
 mmerge fgid using "`pathraw'/meta_data/items", type(1:n)
 keep if _merge==3
 save "`pathraw'/meta_data/forms_items", replace
@@ -168,9 +170,10 @@ post lup ("mnppid")						("System: System Patient ID")
 post lup ("mnpaid")						("System: Additional Patient ID")
 post lup ("mnplabid")					("System: Additional Patient ID 2")
 post lup ("mnp_regimen_gr")				("System: Randomisation")
-post lup ("mnpcnptnid")					("System: Center Patient ID")
-post lup ("mnpctrid")					("System: Center ID")
-post lup ("mnpctrname")					("System: Center name")
+post lup ("mnpcnptnid")					("System: Centre Patient ID")
+post lup ("mnpctrid")					("System: Centre ID")
+post lup ("mnpctrname")					("System: Centre name")
+post lup ("mnpcname")					("System: Country name")
 post lup ("mnpdocid")					("System: eCRF ID")
 post lup ("mnplastedit")				("System: Date of last edit")
 post lup ("mnpptnid")					("System: Form last saved by")
