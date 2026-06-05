@@ -75,7 +75,7 @@ Option {opt fullf:ormnames} keeps the full file names in the {it:labelled_data} 
 {marker examples}{...}
 {title:Examples}
 
-{phang}{cmd: .secutrial_prep, zip("path_to_project/p_export_CSV-xls_PXXXX_YYYYMMDD-hhmmss") path("path_to_project\prepared_data") addid addcentre removesys} {p_end}
+{phang}{cmd: .secutrial_prep, zip("path_to_zipfile") path("path_to_project\prepared_data") addid addcentre removesys} {p_end}
 	
 
 
