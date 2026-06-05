@@ -1,4 +1,4 @@
-*! version 1.0.0 04June2026
+*! version 1.0.1 05June2026
 
 ***************
 *wrapper
@@ -13,20 +13,44 @@ syntax, zip(string) path(string) ///
 	[ADDId ADDCentre REMovesys FULLFormnames]
 
 
-*unzip 
+//local zip "$path\tecno\"
+//local zip "$path\tecno\p_export_CSV-xls_P1645_20260422-074128.zip"
 
-local zipf=subinstr("`zip'",".zip","",1)
-qui dis regexm("`zip'", "P[0-9]+_[0-9]+-[0-9]+")
-local pstr = regexs(0)
-local edt = substr("`pstr'",strpos("`pstr'","_")+1,.)
+*file names and pathes 
+
+if strpos("`zip'",".zip")==0 {
+	newest_zip, pathz("`zip'")
+	local zipf = "`zip'\" + "`r(newest_zip)'"
+	local zip = subinstr("`zipf'",".zip","",1)
+}
+else {
+	
+	local zipf `zip' 
+}	
+
+local extrdir = subinstr("`zip'",".zip","",1)
+qui dis regexm("`zipf'", "_[0-9]+-[0-9]+.zip$")
+local pdt = regexs(0)
+local sn = subinstr("`zipf'","`pdt'","",.)
+local pnumb = strreverse(substr(strreverse("`sn'"),1,strpos(strreverse("`sn'"),"_")-1))
+local pstr = "`pnumb'" + subinstr("`pdt'",".zip","",1)
+	
+local edt = subinstr(subinstr("`pdt'","_","",1),".zip","",1)
 local edate = date(substr("`edt'",1,strpos("`edt'","-")-1),"YMD")
 local edtime = clock("`edt'","YMDhms")
 
+//dis "`extrdir'"
+//dis "`zipf'"
+//dis "`pstr'"
+//dis %tc `edtime'
+
+
+*unzip 
 
 local cdir `c(pwd)'
 
-cap	mkdir "`zipf'"
-qui cd "`zipf'"
+cap	mkdir "`extrdir'"
+qui cd "`extrdir'"
 qui unzipfile "`zipf'", replace
 qui cd "`cdir'"
 
@@ -38,7 +62,7 @@ cap	shell mkdir "`path'/labelled_data/meta_data"
 
 *import data  
 
-qui secutrial_import, pathorig("`zipf'") pathraw("`path'/raw_data") stext("`pstr'")
+qui secutrial_import, pathorig("`extrdir'") pathraw("`path'/raw_data") stext("`pstr'")
 
 *label 
 
@@ -72,6 +96,45 @@ return local export_date `edate'
 	 
 end
 	
+
+****************
+*find newest zip file in a directory
+*******************
+
+cap program drop newest_zip
+program newest_zip, rclass
+
+version 16
+
+syntax, pathz(string)
+
+local files: dir "`pathz'" files "*.zip", respectcase
+
+tempfile dtfile 
+qui postfile res str100 file str20 dts dt using "`dtfile'", replace 
+
+foreach file of local files {
+	//dis as text "`file'"
+	local dt = strreverse(substr(strreverse("`file'"),5,15))
+	local edtime = clock("`dt'","YMDhms")
+	//dis %tc `edtime'
+	post res ("`file'") ("`dt'") (`edtime')
+}	
+postclose res 
+
+use "`dtfile'", clear
+format %tc dt
+gsort -dt 
+local usefile = file[1]
+
+dis ""
+dis as result "zip file used: "
+dis as result "`usefile'"
+
+return local newest_zip "`usefile'"
+
+end 
+
 
 
 ****************************************

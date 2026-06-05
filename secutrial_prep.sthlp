@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 1.0.0  04June2026}{...}
+{* *! version 1.0.1  05June2026}{...}
 {hline}
 {cmd:help secutrial_prep}
 {hline}
@@ -20,7 +20,7 @@
 {synopthdr}
 {synoptline}
 {syntab:Required}
-{synopt:{opth zip(string)}} path and name of the zip file with the data {p_end}
+{synopt:{opth zip(string)}} path to the zip file downloaded from secuTrial {p_end}
 {synopt:{opth path(string)}} path to the folder where the data should be stored {p_end}
 
 {syntab:Optional}
@@ -34,7 +34,9 @@
 
 {pstd}	
 The data has to be dowloaded from secuTrial via the export tool which produces a zip file.
-The full path to the zip-file and the file name have to be specified using {opt zip()}.
+The path to the zip file and optionally the file name have to be specified using {opt zip()}.
+If the file name is not included the zip file in the directory with the most recent export date and time is used 
+(among the file with default secuTrial naming pattern, i.e. suffix {it:_YYYYMMDD-hhmmss.zip}.
 
 {pstd}
 The imported and labelled files will be stored under {opt path()} in two automatically generated folders:

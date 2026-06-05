@@ -1,9 +1,9 @@
-v 1.0.0
+v 1.0.1
 d 'STATA_SECUTRIAL': stata_secutrial
 d 
 d secuTrial data preparation
 d 
-d Distribution-Date:   20260604
+d Distribution-Date:   20260605
 d License: Academic Free License v3.0
 d 
 F secutrial_prep.ado
