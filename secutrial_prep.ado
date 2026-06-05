@@ -9,7 +9,7 @@ program secutrial_prep, rclass
 
 version 16
 
-syntax, zip(string) path(string) ///
+syntax, zip(string) prepped(string) ///
 	[ADDId ADDCentre REMovesys FULLFormnames]
 
 
@@ -56,13 +56,13 @@ qui cd "`cdir'"
 
 *paths
 
-cap	shell mkdir "`path'"
-cap	shell mkdir "`path'/raw_data/meta_data"
-cap	shell mkdir "`path'/labelled_data/meta_data"
+cap	shell mkdir "`prepped'"
+cap	shell mkdir "`prepped'/raw_data/meta_data"
+cap	shell mkdir "`prepped'/labelled_data/meta_data"
 
 *import data  
 
-qui secutrial_import, pathorig("`extrdir'") pathraw("`path'/raw_data") stext("`pstr'")
+qui secutrial_import, pathorig("`extrdir'") pathraw("`prepped'/raw_data") stext("`pstr'")
 
 *label 
 
@@ -83,7 +83,7 @@ if "`fullformnames'"!="" {
 	local fn = "fullformnames"
 }
 
-qui secutrial_label, pathraw("`path'/raw_data") pathlab("`path'/labelled_data") /// 
+qui secutrial_label, pathraw("`prepped'/raw_data") pathlab("`prepped'/labelled_data") /// 
 `ai' `ac' `rs' `fn'
 
 *export date 

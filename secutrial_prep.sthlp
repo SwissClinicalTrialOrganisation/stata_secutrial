@@ -14,14 +14,14 @@
 {title:Syntax}
 
 {p 4 6 2}
-{cmdab:secutrial_prep} {cmd:,} {opth zip(string)} {opth path(string)} [{it:options}]
+{cmdab:secutrial_prep} {cmd:,} {opth zip(string)} {opth prepped(string)} [{it:options}]
 
 {synoptset 38 tabbed}{...}
 {synopthdr}
 {synoptline}
 {syntab:Required}
 {synopt:{opth zip(string)}} path to the zip file downloaded from secuTrial {p_end}
-{synopt:{opth path(string)}} path to the folder where the data should be stored {p_end}
+{synopt:{opth prepped(string)}} path to the folder where the data should be stored {p_end}
 
 {syntab:Optional}
 {synopt:{opt addi:d}} adds additional ID (mnpaid) to all forms {p_end}
@@ -39,7 +39,7 @@ If the file name is not included the zip file in the directory with the most rec
 (among the file with default secuTrial naming pattern, i.e. suffix {it:_YYYYMMDD-hhmmss.zip}.
 
 {pstd}
-The imported and labelled files will be stored under {opt path()} in two automatically generated folders:
+The imported and labelled files will be stored under {opt prepped()} in two automatically generated folders:
 {it:raw_data} contains the unlabelled raw dta files, {it:labelled_data} the labelled files with shortened file names.
 Both inlcude a subfolder {it:meta_data} with the meta data. {p_end}
 	
@@ -63,7 +63,7 @@ Option {opt fullf:ormnames} keeps the full file names in the {it:labelled_data} 
 {marker results}{...}
 {title:Stored results}
 
-{phang} {cmd:secutrial_prep} stores the exported files in two folders under {opt path()}:{p_end}
+{phang} {cmd:secutrial_prep} stores the exported files in two folders under {opt prepped()}:{p_end}
 {phang2}- {it: raw_data} contains raw dta files and the meta data in subfolder {it:meta_data}{p_end}
 {phang2}- {it: labelled_data} contains labelled dta files and the meta data in subfolder{it: meta_data}{p_end}
 
@@ -75,7 +75,7 @@ Option {opt fullf:ormnames} keeps the full file names in the {it:labelled_data} 
 {marker examples}{...}
 {title:Examples}
 
-{phang}{cmd: .secutrial_prep, zip("path_to_zipfile") path("path_to_project\prepared_data") addid addcentre removesys} {p_end}
+{phang}{cmd: .secutrial_prep, zip("path_to_zipfile") prepped("path_to_project\prepared_data") addid addcentre removesys} {p_end}
 	
 
 

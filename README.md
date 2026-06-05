@@ -34,16 +34,16 @@ The main function `secutrial_prep` needs the specification of
 In the second case, the zip-file with the most recent export is chosen 
 	(based on the date and time included in the file name).
 
-The data is then imported and prepared in the folder indicated in **path**.
+The data is then imported and prepared in the folder indicated in **prepped()**.
 
 Example
 ------------
 
 	# Default settings
-	secutrial_prep, zip("path_to_zipfile") path("path_to_project\prepared_data")
+	secutrial_prep, zip("path_to_zipfile") prepped("path_to_project\prepared_data")
 
 	# Add alternative ID and centre name, and remove (unnecessary) system variables
-	secutrial_prep, zip("path_to_zipfile") path("path_to_project\prepared_data") addid addcentre removesys
+	secutrial_prep, zip("path_to_zipfile") prepped("path_to_project\prepared_data") addid addcentre removesys
 
 
 Authors
