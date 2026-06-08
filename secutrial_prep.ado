@@ -435,7 +435,7 @@ foreach form of local fname {
 			"mnpfcs0" "mnpfcs1" "mnpfcs2" "mnpfcs3" "mnpfsqa" ///
 			"mnpfsct" "mnpfssdv" "mnphide" "sigstatus" "sigreason" ///
 			"mnpvsno" "mnpvslbl" ///
-			"mnpaeid" "mnpaedate" "mnpaeno" "mnpaefuid" "mnpaefudt" "mnpsubdocid" ///
+			"mnpaeid" "mnpaedate" "mnpaefuid" "mnpaefudt" "mnpsubdocid" ///
 			"fgid" "position" {
 			
 				if (!inlist("`v'","`keepsys'")) {

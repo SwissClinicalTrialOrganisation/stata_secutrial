@@ -55,7 +55,7 @@ Option {opt rem:ovesys}  removes a set of usually unnecessary system variables f
 	mnpvispdt, mnpvisfdt, mnpfs0, mnpfs1, mnpfs2, mnpfs3,
 	mnpfcs0, mnpfcs1, mnpfcs2, mnpfcs3, mnpfsqa,
 	mnpfsct, mnpfssdv, mnphide, sigstatus, sigreason,
-	mnpvsno, mnpvslbl, mnpaeid, mnpaedate, mnpaeno,
+	mnpvsno, mnpvslbl, mnpaeid, mnpaedate,
 	mnpaefuid, mnpaefudt, mnpsubdocid, fgid, position). 
 	Specific ones can be kept using {opt keepsys()}.
 	
