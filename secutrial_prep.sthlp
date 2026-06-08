@@ -46,7 +46,7 @@ Both inlcude a subfolder {it:meta_data} with the meta data. {p_end}
 	
 {pstd}	
 Options {opt addi:d} and {opt addc:entre} include the additional ID (mnpaid) and the centre name in each form
-	(if files {it:casenodes} and {it:centres} are available).
+	(if meta data files {it:casenodes} and {it:centres} are available).
 
 {pstd}
 Option {opt rem:ovesys}  removes a set of usually unnecessary system variables from each form
