@@ -419,7 +419,9 @@ foreach form of local fname {
 	if `addcentrecheck'==1 {
 		mmerge mnppid using "`pathraw'/meta_data/casenodes", ukeep(mnpctrid) unmatched(master)
 		mmerge mnpctrid using "`pathraw'/meta_data/centres", ukeep(mnpctrname mnpcname) unmatched(master)
-		replace mnpctrname = substr(mnpctrname,strpos(mnpctrname,"-")+1,.)
+		if (strpos(mnpctrname,"-")>0) {
+			replace mnpctrname = substr(mnpctrname,strpos(mnpctrname,"-") + 2,.)
+		}
 		order mnpctrname, after(mnppid)
 		compress mnpctrname
 		drop _merge
