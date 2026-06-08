@@ -433,7 +433,7 @@ foreach form of local fname {
 			"mnpvispdt" "mnpvisfdt" ///
 			"mnpfs0" "mnpfs1" "mnpfs2" "mnpfs3" ///
 			"mnpfcs0" "mnpfcs1" "mnpfcs2" "mnpfcs3" "mnpfsqa" ///
-			"mnpfsct" "mnpfssdv" "mnphide" "sigstatus" "sigreason" ///
+			"mnpfsct" "mnpfssdv" "mnphide" "sigreason" ///
 			"mnpvsno" "mnpvslbl" ///
 			"mnpaeid" "mnpaedate" "mnpaeno" "mnpaefuid" "mnpaefudt" "mnpsubdocid" ///
 			"fgid" "position" {
