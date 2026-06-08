@@ -1,4 +1,4 @@
-v 1.0.1
+v 1.1.0
 d Materials by Lukas Bütikofer & Alan Haynes
 d DCR Bern
 d lukas.buetikofer@unibe.ch

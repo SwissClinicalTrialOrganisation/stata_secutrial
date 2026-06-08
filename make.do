@@ -13,7 +13,7 @@
 *generate make file 
 //cd ".."
 
-make stata_secutrial, replace toc pkg version(1.0.1)                           ///
+make stata_secutrial, replace toc pkg version(1.1.0)                           ///
      license("Academic Free License v3.0")                                   ///
      author("Lukas Bütikofer & Alan Haynes")                                              ///
      affiliation("DCR Bern")                                                 ///
@@ -21,5 +21,5 @@ make stata_secutrial, replace toc pkg version(1.0.1)                           /
      url("https://github.com/dcr-unibe-ch/stata_secutrial")                               ///
      title("stata_secutrial")                                                         ///
      description("secuTrial data preparation")                                           ///
-     install("secutrial_prep.ado;secutrial_prep.sthlp;xlabel.ado;xlabel.hlp;xvarlabel.ado;xvarlabel.hlp") ///
+     install("secutrial_prep.ado;secutrial_prep.sthlp;newest_zip.ado;newest_sthlp.ado;xlabel.ado;xlabel.hlp;xvarlabel.ado;xvarlabel.hlp") ///
      ancillary("")                                                         

@@ -1,4 +1,4 @@
-*! version 1.0.1 05June2026
+*! version 1.1.0 08June2026
 
 ***************
 *wrapper
@@ -19,7 +19,7 @@ syntax, zip(string) prepped(string) ///
 *file names and pathes 
 
 if strpos("`zip'",".zip")==0 {
-	newest_zip, pathz("`zip'")
+	newest_zip, zip("`zip'")
 	local zipf = "`zip'\" + "`r(newest_zip)'"
 	local zip = subinstr("`zipf'",".zip","",1)
 }
@@ -95,46 +95,6 @@ return local export_datetime `edtime'
 return local export_date `edate'
 	 
 end
-	
-
-****************
-*find newest zip file in a directory
-*******************
-
-cap program drop newest_zip
-program newest_zip, rclass
-
-version 16
-
-syntax, pathz(string)
-
-local files: dir "`pathz'" files "*.zip", respectcase
-
-tempfile dtfile 
-qui postfile res str100 file str20 dts dt using "`dtfile'", replace 
-
-foreach file of local files {
-	//dis as text "`file'"
-	local dt = strreverse(substr(strreverse("`file'"),5,15))
-	local edtime = clock("`dt'","YMDhms")
-	//dis %tc `edtime'
-	post res ("`file'") ("`dt'") (`edtime')
-}	
-postclose res 
-
-use "`dtfile'", clear
-format %tc dt
-gsort -dt 
-local usefile = file[1]
-
-dis ""
-dis as result "zip file used: "
-dis as result "`usefile'"
-
-return local newest_zip "`usefile'"
-
-end 
-
 
 
 ****************************************
