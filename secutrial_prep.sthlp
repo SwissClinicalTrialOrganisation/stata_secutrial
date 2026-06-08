@@ -36,20 +36,20 @@
 {pstd}	
 The data has to be dowloaded from secuTrial via the export tool, which produces a zip file.
 The path to the zip file and optionally the file name have to be specified using {opt zip()}.
-If the file name is not included the zip file in the directory with the most recent export date and time is used 
-(among the file with default secuTrial naming pattern, i.e. suffix {it:_YYYYMMDD-hhmmss.zip}.
+If the file name is not specified, the file with the most recent export date and time is used 
+(among the files with default secuTrial naming pattern, i.e. suffix {it:_YYYYMMDD-hhmmss.zip}.
 
 {pstd}
-The imported and labelled files will be stored under {opt prepped()} in two automatically generated folders:
+The imported and labelled files are stored under {opt prepped()} in two automatically generated folders:
 {it:raw_data} contains the unlabelled raw dta files, {it:labelled_data} the labelled files with shortened file names.
 Both inlcude a subfolder {it:meta_data} with the meta data. {p_end}
 	
 {pstd}	
-Options {opt addi:d} and {opt addc:entre} include the additional ID (mnpaid) and the centre name in each from
+Options {opt addi:d} and {opt addc:entre} include the additional ID (mnpaid) and the centre name in each form
 	(if files {it:casenodes} and {it:centres} are available).
 
 {pstd}
-Option {opt rem:ovesys}  removes a set of usually unnecessary system variables from each file
+Option {opt rem:ovesys}  removes a set of usually unnecessary system variables from each form
 	(visitstartdate, mnplabid, mnpcnptnid, mnplastedit, mnpptnid, mnplang,
 	mnpvispdt, mnpcvpid, mnpvisfdt, mnpfs0, mnpfs1, mnpfs2, mnpfs3,
 	mnpfcs0, mnpfcs1, mnpfcs2, mnpfcs3, mnpfsqa,
