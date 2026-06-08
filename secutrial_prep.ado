@@ -10,7 +10,7 @@ program secutrial_prep, rclass
 version 16
 
 syntax, zip(string) prepped(string) ///
-	[ADDId ADDCentre REMovesys FULLFormnames]
+	[ADDId ADDCentre REMovesys keepsys(string) FULLFormnames]
 
 
 //local zip "$path\tecno\"
@@ -84,7 +84,7 @@ if "`fullformnames'"!="" {
 }
 
 qui secutrial_label, pathraw("`prepped'/raw_data") pathlab("`prepped'/labelled_data") /// 
-`ai' `ac' `rs' `fn'
+	`ai' `ac' `rs' `fn' keepsys(`keepsys') 
 
 *export date 
 dis
@@ -259,7 +259,7 @@ program secutrial_label, nclass
 
 version 16
 
-syntax,  pathraw(string) pathlab(string) [ADDId ADDCentre REMovesys FULLFormnames]
+syntax,  pathraw(string) pathlab(string) [ADDId ADDCentre REMovesys keepsys(string) FULLFormnames]
 
 
 *prepare variable labels
@@ -437,7 +437,10 @@ foreach form of local fname {
 			"mnpvsno" "mnpvslbl" ///
 			"mnpaeid" "mnpaedate" "mnpaeno" "mnpaefuid" "mnpaefudt" "mnpsubdocid" ///
 			"fgid" "position" {
-				cap drop `v'
+			
+				if (!inlist("`v'","`keepsys'")) {
+					cap drop `v'
+				}
 		}  
 	}
 	*label

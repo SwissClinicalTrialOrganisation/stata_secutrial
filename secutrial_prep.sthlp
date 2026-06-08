@@ -27,7 +27,8 @@
 {syntab:Optional}
 {synopt:{opt addi:d}} adds additional ID (mnpaid) to all forms {p_end}
 {synopt:{opt addc:entre}} adds centre name to all forms {p_end}
-{synopt:{opt rem:ovesys}} removes most (unnecessary) system variables{p_end}
+{synopt:{opt rem:ovesys}} removes most (usually unnecessary) system variables{p_end}
+{synopt:{opth keepsys(string)}} keeps specified system variables{p_end}
 {synopt:{opt fullf:ormnames}} keep the full form names{p_end}
 
 {marker description}{...}
@@ -55,7 +56,9 @@ Option {opt rem:ovesys}  removes a set of usually unnecessary system variables f
 	mnpfcs0, mnpfcs1, mnpfcs2, mnpfcs3, mnpfsqa,
 	mnpfsct, mnpfssdv, mnphide, sigstatus, sigreason,
 	mnpvsno, mnpvslbl, mnpaeid, mnpaedate, mnpaeno,
-	mnpaefuid, mnpaefudt, mnpsubdocid, fgid, position).
+	mnpaefuid, mnpaefudt, mnpsubdocid, fgid, position). 
+	Specific ones can be kept using {opt keepsys()}.
+	
 	
 {pstd}
 Option {opt fullf:ormnames} keeps the full file names in the {it:labelled_data} folder, inclusing the {it:mnppXXXX}-prefix. 
