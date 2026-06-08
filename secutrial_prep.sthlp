@@ -51,7 +51,7 @@ Options {opt addi:d} and {opt addc:entre} include the additional ID (mnpaid) and
 {pstd}
 Option {opt rem:ovesys}  removes a set of usually unnecessary system variables from each form
 	(visitstartdate, mnplabid, mnpcnptnid, mnplastedit, mnpptnid, mnplang,
-	mnpvispdt, mnpcvpid, mnpvisfdt, mnpfs0, mnpfs1, mnpfs2, mnpfs3,
+	mnpvispdt, mnpvisfdt, mnpfs0, mnpfs1, mnpfs2, mnpfs3,
 	mnpfcs0, mnpfcs1, mnpfcs2, mnpfcs3, mnpfsqa,
 	mnpfsct, mnpfssdv, mnphide, sigstatus, sigreason,
 	mnpvsno, mnpvslbl, mnpaeid, mnpaedate, mnpaeno,

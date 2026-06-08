@@ -429,8 +429,8 @@ foreach form of local fname {
 	if "`removesys'"!="" {
 		foreach v in "visitstartdate" ///
 			"mnplabid" "mnpcnptnid" "mnplastedit" ///
-			"mnpptnid"  "mnplang" ///
-			"mnpvispdt"  "mnpcvpid" "mnpvisfdt" ///
+			"mnpptnid" "mnplang" ///
+			"mnpvispdt" "mnpvisfdt" ///
 			"mnpfs0" "mnpfs1" "mnpfs2" "mnpfs3" ///
 			"mnpfcs0" "mnpfcs1" "mnpfcs2" "mnpfcs3" "mnpfsqa" ///
 			"mnpfsct" "mnpfssdv" "mnphide" "sigstatus" "sigreason" ///
