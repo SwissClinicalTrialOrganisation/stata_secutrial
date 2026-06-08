@@ -36,7 +36,7 @@ The main function `secutrial_prep` needs the specification of
 
 in the **zip()** option.
 
-The second option selects the zip file with the most recent export,
+The second variant selects the zip file with the most recent export,
 	based on the date and time included in the file name.
 
 The data is then imported and prepared in the folder indicated in **prepped()**.
