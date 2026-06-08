@@ -3,8 +3,8 @@ _v. 1.0.1_
 `stata_secutrial`
 ========
 
-The `stata_seuctrial` package imports data dowloaded from secuTrial it into Stata and labels it. 
-The main function is called `secutrial_prep'. It handles, variable labels, value labels, dates and datetimes.
+The `stata_seuctrial` package imports data downloaded from secuTrial into Stata, 
+	generates variable and values labels and codes date and datetimes. 
 
 Installation
 ------------
@@ -23,13 +23,15 @@ Usage
 
 Data has first to be downloaded from secuTrial, which generates a zip file named
 	*p_export_CSV-xls_Pxxxx_YYYYMMDD-hhmmss.zip* or similar. 
-An example export options file is included as ExportOptions.html.
-The important thing for the program to work is that the *meta data* options 
-	are enabled and the *store reference value* option is set to *seperate table*.
+An example export options file is included as *ExportOptions.html*.	Importantly,
+
+-	the *meta data* options must be enabled, and
+-	the *store reference value* option must be set to *seperate table*.
 
 The main function `secutrial_prep` needs the specification of 
 	the path and exact name of the secuTrial zip-file, or
-	the path to the folder containing at least one secuTrial zip-file using the **zip()** option.
+	the path to the folder containing at least one secuTrial zip-file
+	using the **zip()** option.
 
 In the second case, the zip-file with the most recent export is chosen 
 	(based on the date and time included in the file name).
