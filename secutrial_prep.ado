@@ -1,4 +1,4 @@
-*! version 1.0.0 04June2026
+*! version 1.1.0 08June2026
 
 ***************
 *wrapper
@@ -9,36 +9,60 @@ program secutrial_prep, rclass
 
 version 16
 
-syntax, zip(string) path(string) ///
-	[ADDId ADDCentre REMovesys FULLFormnames]
+syntax, zip(string) prepped(string) ///
+	[ADDId ADDCentre REMovesys keepsys(string) FULLFormnames]
+
+
+//local zip "$path\tecno\"
+//local zip "$path\tecno\p_export_CSV-xls_P1645_20260422-074128.zip"
+
+*file names and pathes 
+
+if strpos("`zip'",".zip")==0 {
+	newest_zip, zip("`zip'")
+	local zipf = "`zip'\" + "`r(newest_zip)'"
+	local zip = subinstr("`zipf'",".zip","",1)
+}
+else {
+	
+	local zipf `zip' 
+}	
+
+local extrdir = subinstr("`zip'",".zip","",1)
+qui dis regexm("`zipf'", "_[0-9]+-[0-9]+.zip$")
+local pdt = regexs(0)
+local sn = subinstr("`zipf'","`pdt'","",.)
+local pnumb = strreverse(substr(strreverse("`sn'"),1,strpos(strreverse("`sn'"),"_")-1))
+local pstr = "`pnumb'" + subinstr("`pdt'",".zip","",1)
+	
+local edt = subinstr(subinstr("`pdt'","_","",1),".zip","",1)
+local edate = date(substr("`edt'",1,strpos("`edt'","-")-1),"YMD")
+local edtime = clock("`edt'","YMDhms")
+
+//dis "`extrdir'"
+//dis "`zipf'"
+//dis "`pstr'"
+//dis %tc `edtime'
 
 
 *unzip 
 
-local zipf=subinstr("`zip'",".zip","",1)
-qui dis regexm("`zip'", "P[0-9]+_[0-9]+-[0-9]+")
-local pstr = regexs(0)
-local edt = substr("`pstr'",strpos("`pstr'","_")+1,.)
-local edate = date(substr("`edt'",1,strpos("`edt'","-")-1),"YMD")
-local edtime = clock("`edt'","YMDhms")
-
-
 local cdir `c(pwd)'
 
-cap	mkdir "`zipf'"
-qui cd "`zipf'"
+cap	mkdir "`extrdir'"
+qui cd "`extrdir'"
 qui unzipfile "`zipf'", replace
 qui cd "`cdir'"
 
 *paths
 
-cap	shell mkdir "`path'"
-cap	shell mkdir "`path'/raw_data/meta_data"
-cap	shell mkdir "`path'/labelled_data/meta_data"
+cap	shell mkdir "`prepped'"
+cap	shell mkdir "`prepped'/raw_data/meta_data"
+cap	shell mkdir "`prepped'/labelled_data/meta_data"
 
 *import data  
 
-qui secutrial_import, pathorig("`zipf'") pathraw("`path'/raw_data") stext("`pstr'")
+qui secutrial_import, pathorig("`extrdir'") pathraw("`prepped'/raw_data") stext("`pstr'")
 
 *label 
 
@@ -59,8 +83,8 @@ if "`fullformnames'"!="" {
 	local fn = "fullformnames"
 }
 
-qui secutrial_label, pathraw("`path'/raw_data") pathlab("`path'/labelled_data") /// 
-`ai' `ac' `rs' `fn'
+qui secutrial_label, pathraw("`prepped'/raw_data") pathlab("`prepped'/labelled_data") /// 
+	`ai' `ac' `rs' `fn' keepsys(`keepsys') 
 
 *export date 
 dis
@@ -71,7 +95,6 @@ return local export_datetime `edtime'
 return local export_date `edate'
 	 
 end
-	
 
 
 ****************************************
@@ -236,7 +259,7 @@ program secutrial_label, nclass
 
 version 16
 
-syntax,  pathraw(string) pathlab(string) [ADDId ADDCentre REMovesys FULLFormnames]
+syntax,  pathraw(string) pathlab(string) [ADDId ADDCentre REMovesys keepsys(string) FULLFormnames]
 
 
 *prepare variable labels
@@ -396,7 +419,9 @@ foreach form of local fname {
 	if `addcentrecheck'==1 {
 		mmerge mnppid using "`pathraw'/meta_data/casenodes", ukeep(mnpctrid) unmatched(master)
 		mmerge mnpctrid using "`pathraw'/meta_data/centres", ukeep(mnpctrname mnpcname) unmatched(master)
-		replace mnpctrname = substr(mnpctrname,strpos(mnpctrname,"-")+1,.)
+		if (strpos(mnpctrname,"-")>0) {
+			replace mnpctrname = substr(mnpctrname,strpos(mnpctrname,"-") + 2,.)
+		}
 		order mnpctrname, after(mnppid)
 		compress mnpctrname
 		drop _merge
@@ -406,15 +431,18 @@ foreach form of local fname {
 	if "`removesys'"!="" {
 		foreach v in "visitstartdate" ///
 			"mnplabid" "mnpcnptnid" "mnplastedit" ///
-			"mnpptnid"  "mnplang" ///
-			"mnpvispdt"  "mnpcvpid" "mnpvisfdt" ///
+			"mnpptnid" "mnplang" ///
+			"mnpvispdt" "mnpvisfdt" ///
 			"mnpfs0" "mnpfs1" "mnpfs2" "mnpfs3" ///
 			"mnpfcs0" "mnpfcs1" "mnpfcs2" "mnpfcs3" "mnpfsqa" ///
 			"mnpfsct" "mnpfssdv" "mnphide" "sigstatus" "sigreason" ///
 			"mnpvsno" "mnpvslbl" ///
-			"mnpaeid" "mnpaedate" "mnpaeno" "mnpaefuid" "mnpaefudt" "mnpsubdocid" ///
+			"mnpaedate" "mnpaefuid" "mnpaefudt" "mnpsubdocid" ///
 			"fgid" "position" {
-				cap drop `v'
+			
+				if (!inlist("`v'","`keepsys'")) {
+					cap drop `v'
+				}
 		}  
 	}
 	*label
