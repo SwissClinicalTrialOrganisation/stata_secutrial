@@ -7,7 +7,8 @@
 {title:Title}
 
 {phang}
-{bf:secutrial_prep} {hline 2} Imports secuTrial data into Stata and labels it.
+{bf:secutrial_prep} {hline 2} Imports secuTrial data into Stata,
+	generates variable and values labels, and codes date and datetimes.
 
 
 {marker syntax}{...}
@@ -33,7 +34,7 @@
 {title:Description}
 
 {pstd}	
-The data has to be dowloaded from secuTrial via the export tool which produces a zip file.
+The data has to be dowloaded from secuTrial via the export tool, which produces a zip file.
 The path to the zip file and optionally the file name have to be specified using {opt zip()}.
 If the file name is not included the zip file in the directory with the most recent export date and time is used 
 (among the file with default secuTrial naming pattern, i.e. suffix {it:_YYYYMMDD-hhmmss.zip}.
