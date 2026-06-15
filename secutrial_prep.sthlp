@@ -73,7 +73,7 @@ Option {opt fullf:ormnames} keeps the full file names in the {it:labelled_data} 
 
 {synoptset 22 tabbed}{...}
 {p2col 5 22 19 2: Scalars}{p_end}
-{synopt:{cmd:r(zip_used}}path and name of the zip file used{p_end}
+{synopt:{cmd:r(zip_used)}}path and name of the zip file used{p_end}
 {synopt:{cmd:r(export_datetimes)}}datetime of export (string){p_end}
 {synopt:{cmd:r(export_datetime)}}datetime of export (numeric){p_end}
 {synopt:{cmd:r(export_date)}}date of export (numeric){p_end}
