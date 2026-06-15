@@ -45,9 +45,9 @@ dis ""
 dis as result "zip file used: "
 dis as result "`usefile'"
 
-return local export_d `edate'
-return local export_dt `edtime'
-return local export_dts "`edt'"
+return local export_date `edate'
+return local export_datetime `edtime'
+return local export_datetimes "`edt'"
 return local newest_zip "`usefile'"
 
 end 
