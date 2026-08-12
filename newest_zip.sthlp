@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 1.0.0  09June2026}{...}
+{* *! version 1.1.1  15June2026}{...}
 {hline}
 {cmd:help newest_zip}
 {hline}
@@ -32,12 +32,12 @@ Depends on the suffix {it:_YYYYMMDD-hhmmss.zip}.
 {marker results}{...}
 {title:Stored results}
 
-{synoptset 15 tabbed}{...}
-{p2col 5 15 19 2: Scalars}{p_end}
-{synopt:{cmd:r(newest_zip}}name of the zip file{p_end}
-{synopt:{cmd:r(export_dts)}}datetime of export (string){p_end}
-{synopt:{cmd:r(export_dt)}}datetime of export (numeric){p_end}
-{synopt:{cmd:r(export_d)}}date of export (numeric){p_end}
+{synoptset 22 tabbed}{...}
+{p2col 5 22 19 2: Scalars}{p_end}
+{synopt:{cmd:r(newest_zip)}}name of the zip file{p_end}
+{synopt:{cmd:r(export_datetimes)}}datetime of export (string){p_end}
+{synopt:{cmd:r(export_datetime)}}datetime of export (numeric){p_end}
+{synopt:{cmd:r(export_date)}}date of export (numeric){p_end}
 
 {marker examples}{...}
 {title:Examples}

@@ -91,8 +91,10 @@ dis
 dis "Prepared export from:"
 dis %tc `edtime'
 
-return local export_datetime `edtime'
 return local export_date `edate'
+return local export_datetime `edtime'
+return local export_datetimes "`edt'"
+return local zip_used "`zipf'"
 	 
 end
 
